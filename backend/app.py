@@ -4,14 +4,28 @@ from model.database import DBSession
 from model import models
 from schemas import NoteInput
 from sqlalchemy.orm.exc import UnmappedClassError, UnmappedInstanceError
-
+from fastapi.middleware.cors import CORSMiddleware
 # other imports
 ...
 # the rest of the code
+
+
 ...
 
 app = FastAPI()
 
+
+origins = [
+	"http://localhost:5500" # or add your own front-end's domain name
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 # Add this API Route
 @app.get("/notes")
 def read_notes():
