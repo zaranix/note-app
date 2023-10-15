@@ -5,18 +5,13 @@ from model import models
 from schemas import NoteInput
 from sqlalchemy.orm.exc import UnmappedClassError, UnmappedInstanceError
 from fastapi.middleware.cors import CORSMiddleware
-# other imports
-...
-# the rest of the code
 
-
-...
 
 app = FastAPI()
 
 
 origins = [
-	"http://localhost:5500" # or add your own front-end's domain name
+	"http://localhost:5173" # or add your own front-end's domain name
 ]
 
 app.add_middleware(
@@ -36,7 +31,6 @@ def read_notes():
         db.close()
     return notes
 
-...
 @app.post("/note")
 def add_note(note: NoteInput):
     db = DBSession()
